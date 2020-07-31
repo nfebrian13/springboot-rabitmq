@@ -1,0 +1,10 @@
+server:  port: 8085spring:  rabbitmq:
+   port: 5672
+   host: localhost
+   username: guest
+   password: guest    
+param:
+  rabbitmq:
+    exchange: javainuse.exchange
+    queue: javainuse.queue
+    routingkey: javainuse.routingkey
