@@ -1,0 +1,38 @@
+# Asynchronous Messaging Patterns
+  Pesan asinkron adalah skema pengiriman pesan di mana produksi pesan oleh produsen dipisahkan dari pemrosesan oleh consumer. 
+  Saat berurusan dengan sistem pengiriman pesan, kami biasanya mengidentifikasi dua pola pesan utama - antrian pesan dan mempublikasikan / berlangganan.
+  
+  Message queueing
+  Dalam pola komunikasi antrian pesan, antrian sementara memisahkan produsen dari consumer. 
+  Beberapa produsen dapat mengirim pesan ke antrian yang sama; namun, ketika consumer memproses pesan, 
+  pesan itu dikunci atau dihapus dari antrian dan tidak lagi tersedia. Hanya satu consumer yang mengkonsumsi pesan tertentu.
+    
+  jika consumer gagal memproses pesan tertentu, platform olahpesan biasanya mengembalikan pesan ke antrian di mana pesan itu tersedia untuk consumer lain. 
+  Selain decoupling temporal, antrian memungkinkan kami untuk mengukur produsen dan consumer secara mandiri serta memberikan tingkat toleransi 
+  kesalahan terhadap kesalahan pemrosesan.
+
+  ada dua jenis subscribers:
+  1. An ephemeral subscription: 
+     di mana subscribers hanya aktif selama consumer aktif dan berjalan. Setelah consumer dimatikan, 
+	 subscribers dan pesan yang belum diproses akan hilang.
+  2. A durable subscription
+     di mana langganan dipertahankan selama tidak dihapus secara eksplisit. 
+	 Ketika konsumen dimatikan, platform perpesanan mempertahankan langganan, 
+	 dan pemrosesan pesan dapat dilanjutkan kembali nanti.  
+
+RabbitMQ
+   	menawarkan servis bus
+	 
+   # Queues
+     mekanisme queue yaitu developer akan membuat sebuah pesan dan mempublishnya
+	 kepada broker dan selanjutnya consumer akan mengambil pesan tersebut didalam 
+	 antrian
+   # Message exchanges   
+   
+Apache Kafka
+    bukan implementasi dari message broker tapi adalah distributed streaming platform.
+	
+	Tidak seperti RabbitMQ, yang didasarkan pada antrian dan pertukaran, lapisan penyimpanan Kafka diimplementasikan menggunakan log transaksi yang dipartisi. 
+	Kafka juga menyediakan Streams API untuk memproses stream secara real time dan Connectors API untuk kemudahan integrasi dengan berbagai sumber data; 
+
+   # Topics
