@@ -1,0 +1,6 @@
+2 buah class yaitu:
+
+	1. send 	=> mekanisme untuk mengirim pesan ke broker (rabbit mq)
+	2. receive  => receive mekanisme untuk menerima atau consume pesan dari broker
+
+                     
