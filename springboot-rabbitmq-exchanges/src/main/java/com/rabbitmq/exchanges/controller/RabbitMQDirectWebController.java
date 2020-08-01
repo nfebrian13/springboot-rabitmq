@@ -15,7 +15,9 @@ public class RabbitMQDirectWebController {
 	private AmqpTemplate amqpTemplate;
 
 	@GetMapping(value = "/producer")
-	public String producer(@RequestParam("exchangeName") String exchange, @RequestParam("routingKey") String routingKey,
+	public String producer(
+			@RequestParam("exchangeName") String exchange, 
+			@RequestParam("routingKey") String routingKey,
 			@RequestParam("messageData") String messageData) {
 
 		amqpTemplate.convertAndSend(exchange, routingKey, messageData);
