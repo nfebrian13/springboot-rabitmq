@@ -1,0 +1,40 @@
+package com.rabbitmq.direct.controller;
+
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.rabbitmq.direct.model.Messages;
+
+@RestController
+@RequestMapping(value = "/direct/exchange")
+public class RabbitMQDirectExchangeController {
+
+	/**
+	 * -- Direct Exchange --
+	 * Pesan dikirim ke antrian yang mempunyai routing key yang telah ditentukan dalam aturan binding.
+	 * Routing key dan binding queue harus sama persis. sebuah pesan dikirim ke satu antrian. 
+	 **/
+	
+	@Autowired
+	private AmqpTemplate amqpTemplate;
+
+	@GetMapping(value = "/producer")
+	public String producer(@RequestParam("exchangeName") String exchange, 
+						   @RequestParam("routingKey") String routingKey,
+						   @RequestParam("messageData") String messageData) {
+		amqpTemplate.convertAndSend(exchange, routingKey, messageData);
+		return "Message sent to the RabbitMQ Successfully";
+	}
+
+	@PostMapping(value = "/producer")
+	public String messageProducer(@RequestBody Messages message) {
+		amqpTemplate.convertAndSend(message.getExchangeName(), message.getRoutingKey(), message.getMessageData());
+		return "Message sent to the RabbitMQ Successfully";
+	}
+}

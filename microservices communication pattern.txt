@@ -1,0 +1,26 @@
+1. Database per service
+   Di dalam pola ini setiap micro service mengelola datanya sendiri.
+   artinya tidak ada layanan mikro lain yang dapat
+   mengakses data secara langsung.
+   
+   komunikasi atau pertukaran data hanya dapat terjadi menggunakan
+   sekumpulan API yang ditentukan dengan baik.
+      
+2. Shared database
+   Menggunakan database sama oleh beberapa micro service
+   
+   keuntungan dapat melakukan ACID transaksi, rollback
+   transaction dan sebagainya.
+   
+   kesimpulan menggunakan pattern ini yait dapat mendatangkan banyak kerugian 
+   dalam jangka panjang
+   
+   
+3. Saga pattern
+   urutan transaksi lokal
+ 
+4. Api Composition
+5. CQRS (Command Query Responsibility Segregation)
+6. Event Sourcing
+ 
+
